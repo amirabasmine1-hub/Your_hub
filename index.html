@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HUB YOU</title>
+
+<style>
+
+/* =========================
+   ROOT
+========================= */
+
+:root {
+    --main: #8b5cf6;
+    --main2: #a78bfa;
+    --bg: #08060d;
+    --card: #110d19;
+    --card2: #181222;
+    --border: #292033;
+    --text: #ffffff;
+    --muted: #aaa2b5;
+    --danger: #ff5c70;
+    --success: #45d483;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: .25s;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 70px;
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(17,13,25,.94);
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--main2);
+}
+
+.logo span {
+    color: var(--text);
+}
+
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--card2);
+    color: var(--text);
+
+    font-size: 18px;
+}
+
+.icon-btn:hover {
+    border-color: var(--main);
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 35px 25px 15px;
+}
+
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.hero p {
+    color: var(--muted);
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-area {
+    padding: 10px 25px 20px;
+}
+
+.search {
+    width: 100%;
+    max-width: 650px;
+
+    background: var(--card);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    padding: 13px 16px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: var(--main);
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    padding: 10px 25px 50px;
+
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(270px, 1fr));
+
+    gap: 18px;
+}
+
+
+/* =========================
+   WIDGET
+========================= */
+
+.widget {
+    min-height: 190px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 20px;
+
+    padding: 20px;
+
+    transition:
+        .2s transform,
+        .2s border,
+        .2s opacity;
+
+    position: relative;
+}
+
+.widget:hover {
+    transform: translateY(-3px);
+    border-color: var(--main);
+}
+
+.widget.large {
+    grid-column: span 2;
+}
+
+.widget.hidden {
+    display: none;
+}
+
+.widget-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.widget-head h2 {
+    font-size: 18px;
+}
+
+.widget-menu {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 20px;
+}
+
+
+/* =========================
+   CLOCK
+========================= */
+
+.clock {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.clock-time {
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--main2);
+    direction: ltr;
+}
+
+.clock-date {
+    margin-top: 8px;
+    color: var(--muted);
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.price-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 11px;
+
+    background: var(--card2);
+    border-radius: 11px;
+}
+
+.price-value {
+    color: var(--success);
+}
+
+
+/* =========================
+   TASK
+========================= */
+
+.task-input {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 13px;
+}
+
+.task-input input {
+    flex: 1;
+
+    background: var(--card2);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 11px;
+    outline: none;
+}
+
+.primary {
+    border: none;
+    border-radius: 10px;
+
+    padding: 0 15px;
+
+    background: var(--main);
+    color: white;
+}
+
+.primary:hover {
+    filter: brightness(1.15);
+}
+
+.task-list {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    background: var(--card2);
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.task.completed {
+    opacity: .5;
+    text-decoration: line-through;
+}
+
+.delete {
+    margin-right: auto;
+
+    background: transparent;
+    border: none;
+
+    color: var(--danger);
+    font-size: 17px;
+}
+
+
+/* =========================
+   SPORTS
+========================= */
+
+.match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: var(--card2);
+
+    padding: 13px;
+    margin-bottom: 8px;
+
+    border-radius: 11px;
+}
+
+.match-time {
+    color: var(--main2);
+    direction: ltr;
+}
+
+
+/* =========================
+   NEWS
+========================= */
+
+.news {
+    background: var(--card2);
+
+    padding: 12px;
+
+    border-radius: 11px;
+    margin-bottom: 8px;
+}
+
+.news h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.news p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-row {
+    display: flex;
+    gap: 8px;
+}
+
+.password-row input {
+    flex: 1;
+
+    background: var(--card2);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 11px;
+
+    direction: ltr;
+}
+
+
+/* =========================
+   NOTES
+========================= */
+
+.note {
+    width: 100%;
+    height: 110px;
+
+    resize: vertical;
+
+    background: var(--card2);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    padding: 12px;
+    outline: none;
+}
+
+
+/* =========================
+   QR
+========================= */
+
+.qr-row {
+    display: flex;
+    gap: 8px;
+}
+
+.qr-row input {
+    flex: 1;
+
+    background: var(--card2);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 11px;
+}
+
+.qr-result {
+    margin-top: 12px;
+    text-align: center;
+    color: var(--muted);
+}
+
+
+/* =========================
+   ADD WIDGET
+========================= */
+
+.add-widget {
+    min-height: 190px;
+
+    border: 2px dashed var(--border);
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.add-widget:hover {
+    border-color: var(--main);
+    color: var(--text);
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.72);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 500;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 92%;
+    max-width: 450px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    padding: 24px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-box h2 {
+    margin-bottom: 18px;
+}
+
+
+/* =========================
+   COLORS
+========================= */
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.color {
+    height: 42px;
+
+    border-radius: 12px;
+
+    border: 2px solid transparent;
+
+    cursor: pointer;
+}
+
+.color:hover {
+    border-color: white;
+    transform: scale(1.05);
+}
+
+.c1 { background:#8b5cf6; }
+.c2 { background:#3b82f6; }
+.c3 { background:#06b6d4; }
+.c4 { background:#10b981; }
+.c5 { background:#22c55e; }
+.c6 { background:#eab308; }
+.c7 { background:#f97316; }
+.c8 { background:#ef4444; }
+.c9 { background:#ec4899; }
+.c10 { background:#f43f5e; }
+
+
+/* =========================
+   THEME BUTTONS
+========================= */
+
+.theme-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.theme-btn {
+    flex: 1;
+
+    min-width: 100px;
+
+    padding: 10px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--card2);
+    color: var(--text);
+}
+
+
+/* =========================
+   WIDGET SELECTOR
+========================= */
+
+.widget-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.widget-option {
+    padding: 13px;
+
+    background: var(--card2);
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    color: var(--text);
+
+    text-align: right;
+}
+
+.widget-option:hover {
+    border-color: var(--main);
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+.close-btn {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 11px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: var(--card2);
+    color: var(--text);
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+    position: fixed;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    background: var(--main);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    opacity: 0;
+
+    transition: .3s;
+
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    color: #777;
+
+    padding: 30px;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 700px) {
+
+    header {
+        padding: 0 14px;
+    }
+
+    .hero {
+        padding: 25px 15px 10px;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+    }
+
+    .search-area {
+        padding: 10px 15px;
+    }
+
+    .dashboard {
+        padding: 10px 15px 40px;
+        grid-template-columns: 1fr;
+    }
+
+    .widget.large {
+        grid-column: span 1;
+    }
+
+    .clock-time {
+        font-size: 40px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        HUB <span>YOU</span>
+    </div>
+
+    <div class="header-actions">
+
+        <button
+            class="icon-btn"
+            onclick="openSettings()">
+            ⚙️
+        </button>
+
+        <button
+            class="icon-btn"
+            onclick="openWidgetMenu()">
+            ＋
+        </button>
+
+        <button
+            class="icon-btn"
+            onclick="showToast('صفحه بروزرسانی شد 🔄')">
+            🔄
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1>
+        خوش اومدی به HUB YOU 👋
+    </h1>
+
+    <p>
+        داشبورد خودت را بساز، تغییر بده و شخصی‌سازی کن.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="search-area">
+
+    <input
+        id="search"
+        class="search"
+        placeholder="🔍 جستجو در HUB YOU..."
+        oninput="searchWidgets()">
+
+</div>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<main class="dashboard" id="dashboard">
+
+
+<!-- CLOCK -->
+
+<section
+    class="widget"
+    data-name="ساعت clock">
+
+    <div class="widget-head">
+
+        <h2>
+            🕐 ساعت
+        </h2>
+
+        <button class="widget-menu">
+            ⋮
+        </button>
+
+    </div>
+
+    <div class="clock">
+
+        <div
+            id="clock"
+            class="clock-time">
+            00:00:00
+        </div>
+
+        <div
+            id="date"
+            class="clock-date">
+            --
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PRICE -->
+
+<section
+    class="widget"
+    data-name="ارز دلار یورو پوند">
+
+    <div class="widget-head">
+
+        <h2>
+            💵 قیمت ارز
+        </h2>
+
+        <button class="widget-menu">
+            ⋮
+        </button>
+
+    </div>
+
+    <div class="price-list">
+
+        <div class="price-item">
+            <span>دلار</span>
+            <strong class="price-value">
+                اتصال API
+            </strong>
+        </div>
+
+        <div class="price-item">
+            <span>یورو</span>
+            <strong class="price-value">
+                اتصال API
+            </strong>
+        </div>
+
+        <div class="price-item">
+            <span>پوند</span>
+            <strong class="price-value">
+                اتصال API
+            </strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TASK -->
+
+<section
+    class="widget"
+    data-name="کار تسک task">
+
+    <div class="widget-head">
+
+        <h2>
+            ✅ کارهای امروز
+        </h2>
+
+    </div>
+
+    <div class="task-input">
+
+        <input
+            id="taskInput"
+            placeholder="کار جدید...">
+
+        <button
+            class="primary"
+            onclick="addTask()">
+            +
+        </button>
+
+    </div>
+
+    <ul
+        id="taskList"
+        class="task-list">
+    </ul>
+
+</section>
+
+
+<!-- SPORTS -->
+
+<section
+    class="widget large"
+    data-name="فوتبال ورزش بازی">
+
+    <div class="widget-head">
+
+        <h2>
+            ⚽ بازی‌های ورزشی
+        </h2>
+
+    </div>
+
+    <div class="match">
+
+        <span>
+            تیم A
+        </span>
+
+        <span class="match-time">
+            20:30
+        </span>
+
+        <span>
+            تیم B
+        </span>
+
+    </div>
+
+    <div class="match">
+
+        <span>
+            تیم C
+        </span>
+
+        <span class="match-time">
+            22:00
+        </span>
+
+        <span>
+            تیم D
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- NEWS -->
+
+<section
+    class="widget"
+    data-name="خبر اخبار news">
+
+    <div class="widget-head">
+
+        <h2>
+            📰 اخبار
+        </h2>
+
+    </div>
+
+    <div class="news">
+
+        <h3>
+            HUB YOU در حال توسعه است 🚀
+        </h3>
+
+        <p>
+            بخش اخبار بعداً به سرویس واقعی متصل می‌شود.
+        </p>
+
+    </div>
+
+    <div class="news">
+
+        <h3>
+            امکانات جدید در راه هستند
+        </h3>
+
+        <p>
+            ویجت‌های بیشتری به HUB YOU اضافه خواهند شد.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- PASSWORD -->
+
+<section
+    class="widget"
+    data-name="رمز password امنیت">
+
+    <div class="widget-head">
+
+        <h2>
+            🔐 رمزساز
+        </h2>
+
+    </div>
+
+    <div class="password-row">
+
+        <input
+            id="password"
+            readonly
+            placeholder="رمز قوی">
+
+        <button
+            class="primary"
+            onclick="generatePassword()">
+            بساز
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- NOTES -->
+
+<section
+    class="widget large"
+    data-name="یادداشت note">
+
+    <div class="widget-head">
+
+        <h2>
+            📝 یادداشت من
+        </h2>
+
+    </div>
+
+    <textarea
+        id="notes"
+        class="note"
+        placeholder="هر چیزی خواستی اینجا بنویس..."></textarea>
+
+</section>
+
+
+<!-- QR -->
+
+<section
+    class="widget"
+    data-name="qr کد لینک">
+
+    <div class="widget-head">
+
+        <h2>
+            📱 QR Code
+        </h2>
+
+    </div>
+
+    <div class="qr-row">
+
+        <input
+            id="qrText"
+            placeholder="متن یا لینک">
+
+        <button
+            class="primary"
+            onclick="createQR()">
+            بساز
+        </button>
+
+    </div>
+
+    <div
+        id="qrResult"
+        class="qr-result">
+    </div>
+
+</section>
+
+
+<!-- ADD -->
+
+<div
+    class="add-widget"
+    onclick="openWidgetMenu()">
+
+    ➕ افزودن ویجت
+
+</div>
+
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    HUB YOU © 2026
+
+    <br><br>
+
+    Your World. Your Way.
+
+</footer>
+
+
+<!-- =========================
+     SETTINGS MODAL
+========================= -->
+
+<div
+    id="settingsModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <h2>
+            ⚙️ تنظیمات HUB YOU
+        </h2>
+
+        <p style="color:var(--muted);">
+            رنگ اصلی
+        </p>
+
+        <div class="color-grid">
+
+            <div class="color c1"
+                onclick="setColor('#8b5cf6')"></div>
+
+            <div class="color c2"
+                onclick="setColor('#3b82f6')"></div>
+
+            <div class="color c3"
+                onclick="setColor('#06b6d4')"></div>
+
+            <div class="color c4"
+                onclick="setColor('#10b981')"></div>
+
+            <div class="color c5"
+                onclick="setColor('#22c55e')"></div>
+
+            <div class="color c6"
+                onclick="setColor('#eab308')"></div>
+
+            <div class="color c7"
+                onclick="setColor('#f97316')"></div>
+
+            <div class="color c8"
+                onclick="setColor('#ef4444')"></div>
+
+            <div class="color c9"
+                onclick="setColor('#ec4899')"></div>
+
+            <div class="color c10"
+                onclick="setColor('#f43f5e')"></div>
+
+        </div>
+
+
+        <p style="
+            color:var(--muted);
+            margin-top:20px;
+        ">
+            حالت نمایش
+        </p>
+
+
+        <div class="theme-buttons">
+
+            <button
+                class="theme-btn"
+                onclick="setTheme('dark')">
+                🌙 تاریک
+            </button>
+
+            <button
+                class="theme-btn"
+                onclick="setTheme('light')">
+                ☀️ روشن
+            </button>
+
+            <button
+                class="theme-btn"
+                onclick="setTheme('amoled')">
+                ⚫ AMOLED
+            </button>
+
+        </div>
+
+
+        <button
+            class="close-btn"
+            onclick="closeSettings()">
+
+            بستن
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WIDGET MODAL
+========================= -->
+
+<div
+    id="widgetModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <h2>
+            ➕ افزودن ویجت
+        </h2>
+
+        <div class="widget-options">
+
+            <button
+                class="widget-option"
+                onclick="showToast('ویجت آب‌وهوا به‌زودی اضافه می‌شود 🌤️')">
+                🌤️ آب‌وهوا
+            </button>
+
+            <button
+                class="widget-option"
+                onclick="showToast('ویجت ماشین حساب به‌زودی اضافه می‌شود 🧮')">
+                🧮 ماشین حساب
+            </button>
+
+            <button
+                class="widget-option"
+                onclick="showToast('ویجت Minecraft به‌زودی اضافه می‌شود ⛏️')">
+                ⛏️ Minecraft
+            </button>
+
+            <button
+                class="widget-option"
+                onclick="showToast('ویجت YouTube به‌زودی اضافه می‌شود ▶️')">
+                ▶️ YouTube
+            </button>
+
+            <button
+                class="widget-option"
+                onclick="showToast('ویجت تقویم به‌زودی اضافه می‌شود 📅')">
+                📅 تقویم
+            </button>
+
+        </div>
+
+        <button
+            class="close-btn"
+            onclick="closeWidgetMenu()">
+
+            بستن
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+<script>
+
+/* =========================
+   CLOCK
+========================= */
+
+function updateClock() {
+
+    const now = new Date();
+
+    const time =
+        now.toLocaleTimeString(
+            "fa-IR",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }
+        );
+
+    const date =
+        now.toLocaleDateString(
+            "fa-IR",
+            {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+    document.getElementById("clock")
+        .textContent = time;
+
+    document.getElementById("date")
+        .textContent = date;
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+
+/* =========================
+   TASKS
+========================= */
+
+function addTask() {
+
+    const input =
+        document.getElementById("taskInput");
+
+    const text =
+        input.value.trim();
+
+    if (!text) {
+        showToast("اول یک کار بنویس!");
+        return;
+    }
+
+    const task =
+        document.createElement("li");
+
+    task.className = "task";
+
+    task.innerHTML = `
+        <input
+            type="checkbox"
+            onchange="toggleTask(this)">
+
+        <span>${escapeHTML(text)}</span>
+
+        <button
+            class="delete"
+            onclick="this.parentElement.remove()">
+            ×
+        </button>
+    `;
+
+    document
+        .getElementById("taskList")
+        .appendChild(task);
+
+    input.value = "";
+
+    showToast("کار اضافه شد ✅");
+}
+
+
+function toggleTask(check) {
+
+    const task =
+        check.parentElement;
+
+    task.classList.toggle(
+        "completed",
+        check.checked
+    );
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+function generatePassword() {
+
+    const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "0123456789" +
+        "!@#$%^&*()_+-=";
+
+    let result = "";
+
+    for (let i = 0; i < 18; i++) {
+
+        result +=
+            chars[
+                Math.floor(
+                    Math.random() * chars.length
+                )
+            ];
+
+    }
+
+    document
+        .getElementById("password")
+        .value = result;
+
+    showToast("رمز جدید ساخته شد 🔐");
+}
+
+
+/* =========================
+   COLOR
+========================= */
+
+function setColor(color) {
+
+    document.documentElement
+        .style.setProperty(
+            "--main",
+            color
+        );
+
+    document.documentElement
+        .style.setProperty(
+            "--main2",
+            color
+        );
+
+    localStorage.setItem(
+        "hubColor",
+        color
+    );
+
+    showToast("رنگ HUB YOU تغییر کرد 🎨");
+}
+
+
+/* =========================
+   THEME
+========================= */
+
+function setTheme(theme) {
+
+    if (theme === "light") {
+
+        document.documentElement
+            .style.setProperty(
+                "--bg",
+                "#f3f1f7"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--card",
+                "#ffffff"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--card2",
+                "#eeeaf4"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--text",
+                "#17131d"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--border",
+                "#ddd5e7"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--muted",
+                "#716b78"
+            );
+
+    } else if (theme === "amoled") {
+
+        document.documentElement
+            .style.setProperty(
+                "--bg",
+                "#000000"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--card",
+                "#050505"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--card2",
+                "#101010"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--text",
+                "#ffffff"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--border",
+                "#202020"
+            );
+
+    } else {
+
+        document.documentElement
+            .style.setProperty(
+                "--bg",
+                "#08060d"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--card",
+                "#110d19"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--card2",
+                "#181222"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--text",
+                "#ffffff"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--border",
+                "#292033"
+            );
+
+        document.documentElement
+            .style.setProperty(
+                "--muted",
+                "#aaa2b5"
+            );
+    }
+
+    localStorage.setItem(
+        "hubTheme",
+        theme
+    );
+
+    showToast("تم تغییر کرد ✨");
+}
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+function openSettings() {
+
+    document
+        .getElementById("settingsModal")
+        .classList.add("show");
+
+}
+
+function closeSettings() {
+
+    document
+        .getElementById("settingsModal")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   WIDGET MENU
+========================= */
+
+function openWidgetMenu() {
+
+    document
+        .getElementById("widgetModal")
+        .classList.add("show");
+
+}
+
+function closeWidgetMenu() {
+
+    document
+        .getElementById("widgetModal")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchWidgets() {
+
+    const value =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    const widgets =
+        document.querySelectorAll(
+            ".widget"
+        );
+
+    widgets.forEach(widget => {
+
+        const name =
+            widget
+                .dataset
+                .name
+                .toLowerCase();
+
+        if (
+            name.includes(value) ||
+            value === ""
+        ) {
+
+            widget.classList.remove(
+                "hidden"
+            );
+
+        } else {
+
+            widget.classList.add(
+                "hidden"
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 2200);
+}
+
+
+/* =========================
+   QR
+========================= */
+
+function createQR() {
+
+    const value =
+        document
+            .getElementById("qrText")
+            .value
+            .trim();
+
+    const result =
+        document
+            .getElementById("qrResult");
+
+    if (!value) {
+
+        showToast(
+            "اول متن یا لینک را وارد کن."
+        );
+
+        return;
+    }
+
+    result.innerHTML = `
+        <div style="
+            background:var(--card2);
+            padding:15px;
+            border-radius:12px;
+        ">
+            🔲
+
+            <br><br>
+
+            QR برای «${escapeHTML(value)}»
+        </div>
+    `;
+
+    showToast("QR آماده شد 📱");
+}
+
+
+/* =========================
+   SAVE NOTES
+========================= */
+
+const notes =
+    document.getElementById("notes");
+
+notes.value =
+    localStorage.getItem(
+        "hubNotes"
+    ) || "";
+
+notes.addEventListener(
+    "input",
+    () => {
+
+        localStorage.setItem(
+            "hubNotes",
+            notes.value
+        );
+
+    }
+);
+
+
+/* =========================
+   LOAD SETTINGS
+========================= */
+
+const savedColor =
+    localStorage.getItem(
+        "hubColor"
+    );
+
+if (savedColor) {
+    setColor(savedColor);
+}
+
+const savedTheme =
+    localStorage.getItem(
+        "hubTheme"
+    );
+
+if (savedTheme) {
+    setTheme(savedTheme);
+}
+
+
+/* =========================
+   ENTER TASK
+========================= */
+
+document
+    .getElementById("taskInput")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                addTask();
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+/* =========================
+   CLOSE MODALS
+========================= */
+
+document.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target.classList
+                .contains("modal")
+        ) {
+
+            event.target
+                .classList
+                .remove("show");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+  </html>
